@@ -1,7 +1,9 @@
+import { addressDetails } from "./const"
 import { db, sql } from "./database"
 
+export const getAddressByPostCode = async(postcode: string): Promise<addressDetails[]> => {
 
-export const getAddressByPostCode = async(postcode: string): Promise<any> => {
+    // would need either an ORM or manually map the query onto listOfAddresses
     const listOfAddresses = await db.query(sql`
     SELECT unit_number, building_number, street_description, locality, ward, town, postcode 
     FROM public.hackney_address
