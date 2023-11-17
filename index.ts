@@ -1,8 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import { connectToDB } from './postgres';
-import createConnectionPool from '@databases/pg';
-import { getAddresses } from './router';
+import { getAddressesByPostCode } from './router';
 
 dotenv.config();
 
@@ -14,7 +12,7 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
-app.use('/addressList', getAddresses)
+app.use('/postCode', getAddressesByPostCode)
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

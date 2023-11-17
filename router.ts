@@ -1,12 +1,13 @@
-import { Router, json } from 'express';
-import { getAllAddresses } from './util';
+import { Router } from 'express';
+import { getAddressByPostCode } from './util';
 
 const router = Router()
 
-const jsonParser = json()
+export const getAddressesByPostCode = router.get('/', async (req, res) => {
+    // get postcode entry from frontend here, request body postCode NEEDS to be sent as string
 
-export const getAddresses = router.get('/', async (req, res) => {
-    const allAddresses = await getAllAddresses()
+    const validatedPostCode:string = req.body.postCode
+
+    const allAddresses = await getAddressByPostCode(validatedPostCode)
     res.send(allAddresses)
 })
-
